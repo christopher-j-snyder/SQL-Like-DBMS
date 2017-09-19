@@ -1,0 +1,28 @@
+6
+
+Attribute type  :   str
+Atrribute length:  10
+
+68
+
+9
+
+Manager
+Clerk
+Salesman
+Supervisor
+
+1998
+1997
+2000
+2004
+
+Home
+Kitchen
+Appliances
+Men
+Electronics
+
+Error:  Invalid relation -- employees
+
+Error:  Invalid attribute -- Dept

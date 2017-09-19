@@ -1,0 +1,10 @@
+rowStat   Managers
+numCols    Managers
+colStat  Managers   Department
+numRows    Managers
+select   Employees  Title == "Manager"
+select   Managers   Year  >=  2000
+select   Products   Quantity  <  10
+select   Managers   Year  ==  1999
+select   Managers   Department  >  15
+stop

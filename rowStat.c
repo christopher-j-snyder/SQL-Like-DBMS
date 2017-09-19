@@ -1,0 +1,33 @@
+/* Christopher Snyder
+   ICSI402 Programming Project 3
+   CS146375			*/
+
+#include "structs.h"
+//Function to print a rows rowsize in a given table
+void rowStat(struct database * db, FILE * qFile)
+{
+	int i;
+	int flag = 0;
+	char tableName[16];
+	fscanf(qFile, "%s", tableName);
+
+	//For every table
+	for(i = 0; i< db->numTables; i++)
+	{
+		//If the table exists, print out it's row size
+		if(strcmp(db->tableArray[i]->name, tableName) == 0)
+		{
+			flag = 1;
+			printf("%d\n", db->tableArray[i]->rowsize);
+			fflush(stdout);
+		}
+	}
+
+//If flag is 0, our table was never found. Produce a suitable error message
+if(flag == 0)
+{
+	printf("ERROR: Invalid relation: %s",tableName);
+	fflush(stdout);
+}
+	return;
+}

@@ -1,0 +1,29 @@
+Attribute type  :  str
+Atrribute length:  4
+
+Attribute type  :  int
+Atrribute length:  4
+
+Error: Invalid attribute -- Minnor
+
+3
+4
+1
+
+4
+
+CSI
+BUS
+PSY
+
+5
+
+Woods,Jane     CSI   BUS   97   68
+Ramsey,Elaine  BUS   PSY  107   88
+Wharton,Tom    BUS   PSY  117   98
+
+No tuples satisfy the specified condition.
+
+Error:  Wrong type of value for attribute Credits
+
+Business Law    LAW-220   Evans  3

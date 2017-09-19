@@ -1,0 +1,10 @@
+colStat    Products    Quantity
+rowStat     Products
+numCols      Products
+project    Employees   FName
+project    Managers    LName
+project    Products    Price
+select     Employees   Salary  >= 48000
+select     Managers    LName  !=  "Cohen"
+select     Products    Department  ==  "Kitchen"
+stop

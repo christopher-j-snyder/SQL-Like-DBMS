@@ -1,0 +1,10 @@
+numCols     Employees
+colStat   Employees   FName
+rowStat    Employees
+numRows     Employees
+project   Employees   Title
+project   Managers    Year
+project   Products    Department
+numRows     employees
+project   Managers    Dept
+stop

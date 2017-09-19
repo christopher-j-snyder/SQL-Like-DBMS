@@ -1,0 +1,10 @@
+rowStat   Students
+colStat  Students  Totcr
+numCols    Students
+select   Students   Major == "BUS"
+select   Students   Totcr == 39
+select   Students   Minoor == "CSI"
+select   Sttudents  Name != "Smith,Robert"
+select   Courses    Credits >= 3
+select   Courses    Instr != "Kim"
+stop

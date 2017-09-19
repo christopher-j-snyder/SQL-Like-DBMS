@@ -1,0 +1,10 @@
+numCols   Courses
+rowStat   Courses
+colStat  Courses  CId
+numRows    Courses
+numRows    Students
+project  Students  Major
+project  Courses   CName
+numRows    Course
+project  Students  Majcre
+stop

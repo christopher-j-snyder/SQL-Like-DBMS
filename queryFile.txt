@@ -1,0 +1,2 @@
+colStat Courses 2
+stop

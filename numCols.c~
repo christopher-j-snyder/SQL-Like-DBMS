@@ -1,0 +1,35 @@
+/* Christopher Snyder
+   ICSI402 Programming Project 3
+   CS146375			*/
+
+#include "structs.h"
+
+void numCols(struct database * db, FILE * qFile)
+{
+	int i;
+	int flag = 0;
+	char tableName[16];
+	
+	//Grab the tablename from the query file
+	fscanf(qFile, "%s", tableName);
+
+	//For each table
+	for(i = 0; i< db->numTables; i++)
+	{
+		//If the table exists, print out the number of columns & exit the function
+		if(strcmp(db->tableArray[i]->name, tableName) == 0)
+		{
+			flag = 1;
+			printf("%d\n", db->tableArray[i]->numcols);
+			fflush(stdout);
+		}
+	}
+
+//If flag is 0 our table was never found, produce a suitable error and exit
+if(flag == 0)
+{
+	printf("ERROR: Invalid relation: %s",tableName);
+	fflush(stdout);
+}
+	return;
+}

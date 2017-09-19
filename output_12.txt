@@ -1,0 +1,23 @@
+41
+
+Attribute type  :  int
+Atrribute length:  4
+
+5
+
+Ramsey,Elaine  BUS   PSY  107   88
+Wharton,Tom    BUS   PSY  117   98
+
+Baker,Norma    BIO   CSI   39   25
+
+Error:  Invalid  attribute -- Minoor
+
+Error:  Invalid  relation -- Sttudents
+
+Systems Programming    CSI-402   Ravi   3
+Business Law           LAW-220   Evans  3
+Operations Research    MSI-430   Kim    4
+
+Systems Programming    CSI-402   Ravi   3
+Business Law           LAW-220   Evans  3
+Independent Study      CSI-497   Keller 1

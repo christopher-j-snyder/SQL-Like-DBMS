@@ -1,0 +1,24 @@
+4
+
+47
+
+Attribute type  :  str
+Atrribute length:  8
+
+4
+
+5
+
+PSY
+CSI
+BUS
+BIO
+
+Systems Programming
+Business Law
+Operations Research
+Independent Study
+
+Error:  Invalid relation -- Course
+
+Error:  Invalid attribute -- Majcre

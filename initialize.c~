@@ -1,0 +1,167 @@
+/* Christopher Snyder
+   ICSI402 Programming Project 3
+   CS146375			*/
+
+#include "structs.h"
+
+struct database * initialize(FILE * config){
+	
+//Initialize variables to be used	
+int i;
+int j;
+int k;
+int x;
+int fileSize;
+char * fileName = malloc(sizeof(char)*256);
+char * dfileName = malloc(sizeof(char)*256);
+char dataExt[6] = ".data";
+char tableExt[7] = ".table";
+char * tableName = malloc(sizeof(char *)*256);
+FILE * schema;
+FILE * dFile;
+
+//Create memory for the database structure
+struct database * myDatabase = (struct database *) malloc(sizeof(struct database));
+
+//Read the number of tables from the config file into the databases numTables member
+fscanf(config,"%d\n", &myDatabase->numTables);
+	
+//Allocate space for the databases tableArray member based on the number of tables provided to us
+myDatabase->tableArray = (struct table **) malloc(sizeof(struct table *)*myDatabase->numTables);
+
+for(i=0; i < myDatabase->numTables; i++)
+	myDatabase->tableArray[i] = (struct table *) malloc(sizeof(struct table));
+	
+//For every table in the config file
+for(i=0; i<myDatabase->numTables; i++)
+{
+	//Malloc space for the table
+	struct table * myTable = (struct table *) malloc(sizeof(struct table));
+			
+	//Point the database's tableArray member to myTable
+	myDatabase->tableArray[i] = myTable;
+			
+	//Alias the table array as tables for readability
+	struct table ** tables = myDatabase->tableArray;
+
+	//Read in the table name into the tables name member
+	fscanf(config,"%s\n", tables[i]->name); 		//FIle 2 breaks here
+	printf("Table name: %s\n", tables[i]->name);
+
+	//Copy the tables name into a variable, then append the .table extension to that filename
+	strcpy(fileName, tables[i]->name);
+	strcat(fileName, tableExt);
+			
+	//Open the tables respective .table file
+	if((schema = fopen(fileName, "r")) == NULL)
+	{
+		puts("Could not open table file. Exiting...\n");
+		exit(1);
+	}
+
+	//Copy the tables name into a variable, then append the .data extension to that filename
+	strcpy(dfileName, tables[i]->name);
+	strcat(dfileName, dataExt);
+			
+	//Open the tables respective .data file
+	if((dFile = fopen(dfileName, "r")) == NULL)
+	{
+		puts("Could not open data file. Exiting...\n");
+		exit(1);
+	}
+
+	//Scan the number of columns from the .table file into the tables numcols member
+	fscanf(schema, "%d\n", &tables[i]->numcols);
+	//printf("Number of columns: %d\n", tables[i]->numcols);
+			
+	//Initialize a row for the table
+	struct row * modelRow = (struct row *) malloc(sizeof(struct row));
+	
+	//Initialize an attribute array for the new row 
+	modelRow->attrArray = (struct attribute **) malloc(sizeof(struct attribute *)*tables[i]->numcols);
+	
+	//For each column in the table, fill out a rows "attributes" to be used as a model or blueprint row
+	for(j = 0; j < tables[i]->numcols; j++)
+	{
+		struct attribute * myAttr = (struct attribute *) malloc(sizeof(struct attribute));
+		fscanf(schema, "%s", myAttr->name);
+		//printf("Name is %s\n", myAttr->name);
+		fscanf(schema, "%s", myAttr->type);
+		//printf("Type is %s\n",myAttr->type);
+		fscanf(schema, "%d\n", &myAttr->size);
+		//printf("Size is %d\n", myAttr->size);
+					
+		tables[i]->rowsize += myAttr->size;
+		modelRow->numAttributes++;
+		modelRow->attrArray[j] = myAttr;
+				
+		//printf("Rowsize is %d\n",tables[i]->rowsize);
+	
+	}
+			
+	//Generate the size of the data file by seeking to the end of it and checking that number of bytes
+	fseek(dFile, 0, SEEK_END);
+	fileSize = ftell(dFile);
+
+	//Reset the data file to the start to be read later
+	fseek(dFile, 0 , SEEK_SET);
+			
+	//Calculate the number of rows by dividng file size by row size
+	tables[i]->numrows = (fileSize)/(tables[i]->rowsize);
+	printf("Database number of rows is %d\n", myDatabase->tableArray[i]->numrows);
+	
+	//Malloc space for the tables row array
+	tables[i]->rowArray = (struct row **)malloc(sizeof(struct row *)*tables[i]->numrows);
+
+	//Alias the row array for readability
+	struct row ** rows = myDatabase->tableArray[i]->rowArray;
+
+	//For each row in the table, malloc space for the row
+	for(j = 0; j < tables[i]->numrows; j++)
+	{
+		rows[j] = (struct row *)malloc(sizeof(struct row));
+
+		//For each row, malloc space for the attribute array
+		rows[j]->attrArray = (struct attribute **)malloc(sizeof(struct attribute *)*tables[i]->numcols);
+
+		//For each attribute, malloc space and copy our "model row" that we read in from the table file
+		for(k = 0; k < tables[i]->numcols; k++)
+		{
+			struct attribute * newAttr = (struct attribute *)malloc(sizeof(struct attribute));
+			rows[j]->attrArray[k] = newAttr;
+			strcpy(rows[j]->attrArray[k]->name, modelRow->attrArray[k]->name);
+			strcpy(rows[j]->attrArray[k]->type, modelRow->attrArray[k]->type);
+
+			//printf("DB Type is %s\n", rows[j]->attrArray[k]->type);			
+
+			rows[j]->attrArray[k]->size = modelRow->attrArray[k]->size;
+		}
+	}
+	
+	for(j = 0; j < tables[i]->numrows; j++)
+	{
+		struct row * r = rows[j];
+		for(k = 0; k < tables[i]->numcols; k++)
+		{
+			struct attribute * a = (r->attrArray)[k];
+			if(strcmp(a->type, "str") == 0)
+				fread(a->strVal, a->size, 1, dFile);
+			else
+				fread(&a->intVal, 4, 1, dFile);
+		}
+	}
+	
+
+	//printf("Database table name: %s\n", myDatabase->tableArray[i]->name);
+	//printf("Database num cols: %d\n", myDatabase->tableArray[i]->numcols);
+
+			
+	//Close the .table and .data file
+	fclose(schema);
+	fclose(dFile);
+	
+
+}//End of main for loop
+	puts("\nDatabase successfully initialized! \n");
+	return myDatabase;
+}//End of function

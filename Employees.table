@@ -1,0 +1,7 @@
+6
+LName       str  20
+FName       str  10
+Title       str  15
+Age         int  4
+Salary      int  4
+Department  str  15

@@ -1,0 +1,2 @@
+gcc -c initialize.c
+gcc main.o initialize.o select.o numRows.o rowStat.o numCols.o colStat.o project.o -o p3

@@ -1,0 +1,31 @@
+For each pair of input files, run your program on those two files, and
+compare the output to the contents of the corresponding output
+file. Keep in mind that your program should print its output to
+stdout (not to a file). Make sure that all of the test files
+(including .table and .data files) are in the present working
+directory when you run your program.
+
+
+INPUT: cfile1.txt qfile_11.txt
+OUTPUT: output_11.txt
+
+
+INPUT: cfile1.txt qfile_12.txt
+OUTPUT: output_12.txt
+
+
+INPUT: cfile1.txt qfile_13.txt
+OUTPUT: output_13.txt
+
+
+INPUT: cfile2.txt qfile_21.txt
+OUTPUT: output_21.txt
+
+
+INPUT: cfile2.txt qfile_22.txt
+OUTPUT: output_22.txt
+
+
+INPUT: cfile2.txt qfile_23.txt
+OUTPUT: output_23.txt
+

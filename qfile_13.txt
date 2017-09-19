@@ -1,0 +1,12 @@
+colStat  Students  Major
+colStat   Courses   Credits
+colStat   Students  Minnor
+project   Courses   Credits
+numRows     Courses
+project   Students  Minor
+numRows     Students
+select    Students  Totcr >= 97
+select    Students  Majcr == 69
+select    Courses   Credits  >  "Ravi"
+select    Courses   Instr == "Evans"
+stop

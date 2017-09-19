@@ -1,0 +1,25 @@
+49
+
+4
+
+Attribute type  :   str
+Atrribute length:  15
+
+5
+
+Smith   Michael   Manager   36   45000   Home
+Cohen   Jordan    Manager   37   48000   Kitchen
+Hunter  Bonnie    Manager   39   50000   Appliances
+Bender  David     Manager   40   51000   Men
+Cohen   Sara      Manager   36   48000   Electronics
+
+Men          Bender  David  2000
+Electronics  Cohen   Sara   2004
+
+Mattress  9  250  Home
+Cutlery   8  45   Kitchen
+Stereo    7  150  Electronics
+
+No tuples satisfy the specified condition.
+
+Error:  Wrong type of value for attribute Department.

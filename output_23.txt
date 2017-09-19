@@ -1,0 +1,41 @@
+Attribute type  :  int
+Atrribute length:  4
+
+38
+
+4
+
+Michael
+Peter
+Jordan
+Brad
+Bonnie
+Marvin
+David
+Sara
+
+Smith
+Cohen
+Hunter
+Bender
+
+250
+6
+45
+8
+350
+18
+12
+150
+
+Cohen    Jordan    Manager     37  48000  Kitchen
+Hunter   Bonnie    Manager     39  50000  Appliances
+Bender   David     Manager     40  51000  Men
+Cohen    Sara      Manager     36  48000  Electronics
+
+Home         Smith   Michael  1998
+Appliances   Hunter  Bonnie   1997
+Men          Bender  David    2000
+
+Cutlery      8   45  Kitchen
+Plate       12    8  Kitchen

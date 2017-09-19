@@ -1,0 +1,35 @@
+/* Christopher Snyder
+   ICSI402 Programming Project 3
+   CS146375			*/
+
+#include "structs.h"
+int main(int argc, char * argv[]){
+
+//Helper function to kill the program and print an error message to be used in error checking
+void die(char * message)
+{
+	fprintf(stderr, message);
+	fflush(stderr);
+	exit(1);
+}
+
+//Declaring file pointers to be used in the program
+FILE *configFile;
+FILE *queryFile;
+
+if(argc != 3)
+	die("Incorrect number of command line arguments. Exiting...\n");
+
+if((configFile = fopen(argv[1], "r")) == NULL)
+	die("Could not open config file. Exiting...\n");
+
+if((queryFile = fopen(argv[2], "r")) == NULL)
+	die("Could not open query file. Exiting...\n");
+
+struct database * newDatabase; 
+newDatabase = (struct database *) initialize(configFile);
+runQueries(newDatabase, queryFile);
+
+
+return 0;
+}

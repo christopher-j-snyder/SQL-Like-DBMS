@@ -1,0 +1,5 @@
+4
+Department  str  15
+LName       str  20
+FName       str  10
+Year        int  4

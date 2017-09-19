@@ -1,0 +1,42 @@
+/* Christopher Snyder
+   ICSI402 Programming Project 3
+   CS146375			*/
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+//Structure definitions to be used to create a relational database
+
+struct database{
+	int numTables;
+	struct table ** tableArray;
+	};
+
+struct table{
+	char name[16];
+	int numrows;
+	int numcols;
+	int rowsize;
+	struct row ** rowArray;
+	};
+
+struct row{
+	int size;
+	int numAttributes;
+	struct attribute ** attrArray;
+	};
+
+union data{
+	char * str;
+	int integer;
+	};
+
+struct attribute{
+	char name[25];
+	char type[3];
+	int size;
+	int intVal;
+	char strVal[25];
+	};
